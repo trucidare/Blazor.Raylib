@@ -1,16 +1,85 @@
 ﻿@inherits LayoutComponentBase
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+<HeadContent>
+    <style>
+        :root {
+            --p: 65.69% .196 275.75;
+            --s: 74.8% .26 342.55;
+            --a: 74.51% .167 183.61;
+            --n: 31.3815% .021108 254.139175;
+            --nc: 74.6477% .0216 264.435964;
+            --b1: 25.3267% .015896 252.417568;
+            --b2: 23.2607% .013807 253.100675;
+            --b3: 21.1484% .01165 254.087939;
+            --bc: 74.6477% .0216 264.435964;
+        }
+        
+        * {
+            color:  oklch(var(--bc)) !important;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+    </style>
+</HeadContent>
+
+<div class="absolute inset-0 bg-[oklch(var(--b1))] text-[oklch(var(--bc)] select-none flex flex-col">
+    <div class="h-12 b-0 b-solid b-b-1 b-gray-400 px-3 flex items-center justify-between">
+        <div @onclick="@(() => NavigateTo("/"))" class="cursor-pointer text-xl">Blazor<sup class="font-semibold text-sm">Raylib</sup></div>
+        <div class="flex items-center gap-2">
+            <div class="text-3xl w-6 h-6 flex items-center cursor-pointer" @onclick="@(() => NavigateTo("https://www.raylib.com/"))">@(Logos.Raylib)</div>
+            <div class="text-3xl w-6 h-6 flex items-center cursor-pointer" @onclick="@(() => NavigateTo("https://github.com/trucidare"))">@(Logos.Github)</div>
         </div>
-
-        <article class="">
+    </div>
+    <div class="grow flex">
+        <nav class="min-w-72 b-0 b-r-1 b-solid b-gray-400 h-full">
+            <div class="h-10 b-0 b-solid b-b-1 b-gray-400 flex items-center justify-center">
+                <span class="text-sm">Navigation</span>
+            </div>
+            
+            <div class="px-4 py-6 flex flex-col gap-2">
+                <div>
+                    <NavLink href="/" class="flex gap-2 items-center bg-white/5 rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7">
+                        <div class="w-5 h-5">@(MaterialDesignIcons.ContainStart)</div>Getting Started
+                    </NavLink>
+                    <div class="px-6 !text-sm pt-4 flex flex-col gap-2">
+                        <NavLink href="/whatsnew" class="flex gap-2 items-center rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7" Match="NavLinkMatch.All" ActiveClass="b-0 b-solid b-l-4 b-gray-400">
+                            <div class="w-4 h-4">@(Fluent.New16)</div>Whats new
+                        </NavLink>
+                        <NavLink href="/installation" class="flex gap-2 items-center rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7" Match="NavLinkMatch.All" ActiveClass="b-0 b-solid b-l-4 b-gray-400">
+                            <div class="w-4 h-4">@(MaterialDesignIcons.Installation)</div>Installation
+                        </NavLink>
+                        <NavLink href="/services" class="flex gap-2 items-center rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7" Match="NavLinkMatch.All" ActiveClass="b-0 b-solid b-l-4 b-gray-400">
+                            <div class="w-4 h-4">@(Fluent.Services)</div>Services
+                        </NavLink>
+                    </div>
+                </div>
+                <div>
+                    <NavLink href="/" class="flex gap-2 items-center bg-white/5 rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7">
+                        <div class="w-5 h-5">@(MaterialDesignIcons.Window)</div>Examples
+                    </NavLink>
+                    <div class="px-6 !text-sm pt-4 flex flex-col gap-2">
+                        <NavLink @onclick="@(() => NavigateTo("/examples/basic-window", true))" class="flex gap-2 items-center rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7" Match="NavLinkMatch.All" ActiveClass="b-0 b-solid b-l-4 b-gray-400">
+                            <div class="w-4 h-4">@(Fluent.Sample)</div>Basic Window
+                        </NavLink>
+                        <NavLink @onclick="@(() => NavigateTo("/examples/basic-screen-manager", true))" class="flex gap-2 items-center rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7" Match="NavLinkMatch.All" ActiveClass="b-0 b-solid b-l-4 b-gray-400">
+                            <div class="w-4 h-4">@(Fluent.Sample)</div>Basic Screen Manager
+                        </NavLink>
+                        <NavLink @onclick="@(() => NavigateTo("/examples/two-d-camera", true))" class="flex gap-2 items-center rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7" Match="NavLinkMatch.All" ActiveClass="b-0 b-solid b-l-4 b-gray-400">
+                            <div class="w-4 h-4">@(Fluent.Sample)</div>2D Camera
+                        </NavLink>
+                        
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <main>
             @Body
-        </article>
-    </main>
+        </main>
+    </div>
+    <footer class="b-0 b-solid b-t-1 b-gray-400 px-2 py-1 flex items-center justify-between !text-sm">
+        <span>&copy; 2024 Nils Tonagel</span>
+        <span>Version: @GetVersion()</span>
+    </footer>
 </div>

@@ -7,6 +7,7 @@
     <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
     <InvariantGlobalization>true</InvariantGlobalization>
     <WasmGenerateAppBundle>true</WasmGenerateAppBundle>
+    <Version>0.0.1-Dev</Version>
   </PropertyGroup>
 
   <ItemGroup>
