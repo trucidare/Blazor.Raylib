@@ -97,5 +97,6 @@ public partial class GifPlayer : ComponentBase
             DrawText("(c) Scarfy sprite by Eiden Marsal", screenWidth - 200, screenHeight - 20, 10, Color.Gray);
 
         EndDrawing();
+        await Task.CompletedTask;
     }
 }

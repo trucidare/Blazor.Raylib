@@ -96,5 +96,7 @@ public partial class ThreeDPicking : ComponentBase
             DrawFPS(10, 10);
 
         EndDrawing();
+        
+        await Task.CompletedTask;
     }
 }

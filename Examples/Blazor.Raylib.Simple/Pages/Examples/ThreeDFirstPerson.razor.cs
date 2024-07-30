@@ -184,5 +184,6 @@ public partial class ThreeDFirstPerson : ComponentBase
             DrawText(string.Format("- Up: ({0}, {1}, {2})", camera.Up.X, camera.Up.Y, camera.Up.Z), 610, 90, 10, Color.Black);
 
         EndDrawing();
+        await Task.CompletedTask;
     }
 }

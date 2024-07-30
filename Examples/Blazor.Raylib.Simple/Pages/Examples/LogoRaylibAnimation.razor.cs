@@ -33,7 +33,7 @@ public partial class LogoRaylibAnimation : ComponentBase
     }
 
     // Main game loop
-    private unsafe async Task Render(float delta)
+    private async Task Render(float delta)
     {
          // Update
         //----------------------------------------------------------------------------------
@@ -143,5 +143,6 @@ public partial class LogoRaylibAnimation : ComponentBase
             }
 
         EndDrawing();
+        await Task.CompletedTask;
     }
 }

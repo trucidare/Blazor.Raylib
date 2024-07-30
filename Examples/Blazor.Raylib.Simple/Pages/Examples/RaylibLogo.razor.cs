@@ -46,5 +46,7 @@ public partial class RaylibLogo : ComponentBase
         DrawText("this IS a texture!", 360, 370, 10, Color.Gray);
 
         EndDrawing();
+
+        await Task.CompletedTask;
     }
 }
