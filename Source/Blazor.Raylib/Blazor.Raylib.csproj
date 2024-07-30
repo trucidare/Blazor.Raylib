@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AllowUnsafeCodeBlock>true</AllowUnsafeCodeBlock>
+    <IncludeAssets>All</IncludeAssets>
+    <ExcludeAssets>None</ExcludeAssets>
+    <PrivateAssets>None</PrivateAssets>
+    <Private>True</Private>
+    <OutputItemType>Content</OutputItemType>
+    <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <TreatAsPackageReference>True</TreatAsPackageReference>
+    <WasmEnableExceptionHandling>false</WasmEnableExceptionHandling>
+    <RunAOTCompilation>true</RunAOTCompilation>
+    <WasmBuildNative>true</WasmBuildNative>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AllowUnsafeCodeBlock>true</AllowUnsafeCodeBlock>
+    <WasmAllowUndefinedSymbols>true</WasmAllowUndefinedSymbols>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.0-*" />
+    <PackageReference Include="Raylib-cs" Version="6.1.1" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Include="Raylib.props">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

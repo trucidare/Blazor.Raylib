@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    
+    <PropertyGroup>
+        <WasmEnableExceptionHandling>false</WasmEnableExceptionHandling>
+        <RunAOTCompilation>true</RunAOTCompilation>
+        <WasmBuildNative>true</WasmBuildNative>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <AllowUnsafeCodeBlock>true</AllowUnsafeCodeBlock>
+        <WasmAllowUndefinedSymbols>true</WasmAllowUndefinedSymbols>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <NativeFileReference Include="raylib.a" />
+    </ItemGroup>
+ 
+    <Choose>
+        <When Condition=" $(Configuration) == 'Debug' ">
+            <PropertyGroup>
+                <WasmEnableExceptionHandling>true</WasmEnableExceptionHandling>
+                <WasmEmitSymbolMap>true</WasmEmitSymbolMap>
+                <!--<EmccFlags>-sUSE_GLFW=3 -sASYNCIFY=1 -Wbad-function-cast -Wcast-function-type -O2 -g3 -sVERBOSE=1 -sINITIAL_MEMORY=128MB -sMAXIMUM_MEMORY=2048MB -sALLOW_MEMORY_GROWTH=1 -sASYNCIFY_STACK_SIZE=10000000</EmccFlags>-->
+                <EmccFlags>-s USE_GLFW=3 -Wbad-function-cast -Wcast-function-type </EmccFlags>
+            </PropertyGroup>
+        </When>
+        <When Condition=" $(Configuration) == 'Release' ">
+            <PropertyGroup>
+                <WasmEnableExceptionHandling>true</WasmEnableExceptionHandling>
+                <EmccFlags>-s USE_GLFW=3 </EmccFlags>
+            </PropertyGroup>
+        </When>
+    </Choose>
+
+</Project>
