@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.Raylib.Simple", "Bla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.Raylib", "..\Source\Blazor.Raylib\Blazor.Raylib.csproj", "{2806459C-0CD6-4DDA-8003-4C4C8CBDE891}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", "{CB3FF1B5-4BE4-44C2-8878-2B15C06FBF46}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,8 @@ Global
 		{2806459C-0CD6-4DDA-8003-4C4C8CBDE891}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2806459C-0CD6-4DDA-8003-4C4C8CBDE891}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2806459C-0CD6-4DDA-8003-4C4C8CBDE891}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2806459C-0CD6-4DDA-8003-4C4C8CBDE891} = {CB3FF1B5-4BE4-44C2-8878-2B15C06FBF46}
 	EndGlobalSection
 EndGlobal
