@@ -21,7 +21,7 @@ public partial class Raylib
  
     protected override async Task OnInitializedAsync()
     {
-        await JSHost.ImportAsync("Raylib", "/_content/Blazor.Raylib/Components/Raylib.razor.js");
+        await JSHost.ImportAsync("Raylib", "../_content/Blazor.Raylib/Components/Raylib.razor.js");
         Init(_id);
         Render(this, _id);
         InitRaylib();
