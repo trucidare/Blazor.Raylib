@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div>
-                    <NavLink href="/" class="flex gap-2 items-center bg-white/5 rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7">
+                    <NavLink href="./" class="flex gap-2 items-center bg-white/5 rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7">
                         <div class="w-5 h-5">@(MaterialDesignIcons.Window)</div>Examples
                     </NavLink>
                     <div class="px-6 !text-sm pt-4 flex flex-col gap-2">
@@ -69,7 +69,21 @@
                         <NavLink @onclick="@(() => NavigateTo("./examples/two-d-camera", true))" class="flex gap-2 items-center rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7" Match="NavLinkMatch.All" ActiveClass="b-0 b-solid b-l-4 b-gray-400">
                             <div class="w-4 h-4">@(Fluent.Sample)</div>2D Camera
                         </NavLink>
-                        
+                        <NavLink @onclick="@(() => NavigateTo("./examples/three-d-first-person", true))" class="flex gap-2 items-center rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7" Match="NavLinkMatch.All" ActiveClass="b-0 b-solid b-l-4 b-gray-400">
+                            <div class="w-4 h-4">@(Fluent.Sample)</div>3D Camera First Person
+                        </NavLink>
+                        <NavLink @onclick="@(() => NavigateTo("./examples/three-d-picking", true))" class="flex gap-2 items-center rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7" Match="NavLinkMatch.All" ActiveClass="b-0 b-solid b-l-4 b-gray-400">
+                            <div class="w-4 h-4">@(Fluent.Sample)</div>3D Picking
+                        </NavLink>
+                        <NavLink @onclick="@(() => NavigateTo("./examples/logo-raylib-anim", true))" class="flex gap-2 items-center rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7" Match="NavLinkMatch.All" ActiveClass="b-0 b-solid b-l-4 b-gray-400">
+                            <div class="w-4 h-4">@(Fluent.Sample)</div>Logo Raylib Animation
+                        </NavLink>
+                        <NavLink @onclick="@(() => NavigateTo("./examples/gif-player", true))" class="flex gap-2 items-center rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7" Match="NavLinkMatch.All" ActiveClass="b-0 b-solid b-l-4 b-gray-400">
+                            <div class="w-4 h-4">@(Fluent.Sample)</div>Gif Player (broken)
+                        </NavLink>
+                        <NavLink @onclick="@(() => NavigateTo("./examples/raylib-logo", true))" class="flex gap-2 items-center rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7" Match="NavLinkMatch.All" ActiveClass="b-0 b-solid b-l-4 b-gray-400">
+                            <div class="w-4 h-4">@(Fluent.Sample)</div>Raylib Logo
+                        </NavLink>
                     </div>
                 </div>
             </div>

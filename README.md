@@ -9,9 +9,8 @@ Following....
 See LICENSE
 
 
-## Thanks to
+## Special Thanks to
 
-Raylib: [Raylib](https://raylib.com)
-
-Heavily inspired by  
+Raylib: [Raylib](https://raylib.com) 
 Stanoddly: [Github](https://github.com/stanoddly/DotnetRaylibWasm)
+ChrisDill: [Github](https://github.com/ChrisDill/Raylib-cs)
