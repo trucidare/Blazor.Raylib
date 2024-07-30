@@ -1,0 +1,39 @@
+name: Deploy Blazor WASM to GitHub Pages
+
+on:
+    push:
+        branches: [main]
+
+jobs:
+    deploy-to-github-pages:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Setup .NET Core SDK
+              uses: actions/setup-dotnet@v1
+              with:
+                include-prerelease: true
+                dotnet-version: '9.0'
+                dotnet-quality: 'preview'
+
+            - name: Restore workloads
+              run: cd Examples/Blazor.Raylib.Simple && dotnet workload restore
+
+
+            - name: Publish .NET Core Project
+              run: dotnet publish Examples/Blazor.Raylib.Simple/Blazor.Raylib.Simple.csproj -c Release -o release --nologo
+
+            - name: copy index.html to 404.html
+              run: cp release/publish/wwwroot/index.html
+
+            - name: Add .nojekyll file
+              run: touch release/wwwroot/.nojekyll
+
+            - name: Commit wwwroot to GitHub Pages
+              uses: JamesIves/github-pages-deploy-action@3.7.1
+              with:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  BRANCH: gh-pages
+                  FOLDER: release/wwwroot
+                  
