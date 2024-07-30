@@ -17,6 +17,10 @@ jobs:
                 dotnet-version: '9.0'
                 dotnet-quality: 'preview'
 
+            - name: Restore workloads
+              run: cd Examples/Blazor.Raylib.Simple && dotnet workload restore
+
+
             - name: Publish .NET Core Project
               run: dotnet publish Examples/Blazor.Raylib.Simple/Blazor.Raylib.Simple.csproj -c Release -o release --nologo
 
