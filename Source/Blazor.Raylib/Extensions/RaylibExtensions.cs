@@ -69,6 +69,7 @@ internal static unsafe class LoadFileBag
         var resource = Utf8StringUtils.GetUTF8String(buffer);
         if (!string.IsNullOrEmpty(resource))
         {
+            Console.WriteLine($"DEBUG: {resource}");
             var bytes = Callback?.Invoke(resource) ?? [];
             fixed (byte* p = &bytes[0] )
             {
@@ -86,6 +87,7 @@ internal static unsafe class LoadFileBag
         var resource = Utf8StringUtils.GetUTF8String(buffer);
         if (!string.IsNullOrEmpty(resource))
         {
+            Console.WriteLine($"DEBUG: {resource}");
             var bytes = TextFileCallback?.Invoke(resource) ?? [];
             var s = System.Text.Encoding.UTF8.GetString(bytes, 0, bytes.Length).ToUtf8Buffer();
             return s.AsPointer();

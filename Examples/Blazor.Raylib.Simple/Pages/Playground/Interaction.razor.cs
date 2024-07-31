@@ -1,5 +1,6 @@
 using System.Numerics;
 using Blazor.Raylib.Extensions;
+using Blazor.Raylib.Simple.Extensions;
 using Blazor.Raylib.Simple.Services;
 using Microsoft.AspNetCore.Components;
 using Raylib_cs;
@@ -21,14 +22,15 @@ public partial class Interaction : ComponentBase
     private Camera3D _camera;
     private Shader _shader;
     private RenderTexture2D _target;
+    private Music _music;
     
     private async void Init()
     {
         const int screenWidth = 1280;
         const int screenHeight = 768;
         const int GLSL_VERSION = 100;
-        
         InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+        InitAudioDevice();                  
         _color = Color.White;
         RaylibExtensions.SetLoadFileTextCallback(ResourceService.GetLoadedResource);
         RaylibExtensions.SetLoadFileDataCallback(ResourceService.GetLoadedResource);
@@ -36,6 +38,7 @@ public partial class Interaction : ComponentBase
         await ResourceService.PreloadResource("resources/models/obj/turret.obj");
         await ResourceService.PreloadResource("resources/models/obj/turret_diffuse.png");
         await ResourceService.PreloadResource($"resources/shaders/glsl{GLSL_VERSION}/grayscale.fs");
+        await ResourceService.PreloadResource("resources/audio/mini1111.xm");
         
         _camera.Position = new Vector3 ( 10.0f, 10.0f, 10.0f ); 
         _camera.Target = new Vector3( 0.0f, 2.0f, 0.0f );      
@@ -51,12 +54,15 @@ public partial class Interaction : ComponentBase
         _shader = LoadShader(null!, $"resources/shaders/glsl{GLSL_VERSION}/grayscale.fs");
         _target = LoadRenderTexture(screenWidth, screenHeight);
 
+        _music = await ResourceService.LoadResourceFromUri("resources/audio/mini1111.xm", e => LoadMusicStreamFromMemory(".xm",e));
+        PlayMusicStream(_music);
     }
     
     // Main game loop
     private async Task Render(float delta)
     {
         UpdateCamera(ref _camera, CameraMode.Orbital);
+        UpdateMusicStream(_music);
         
         BeginTextureMode(_target);
             ClearBackground(_color);
