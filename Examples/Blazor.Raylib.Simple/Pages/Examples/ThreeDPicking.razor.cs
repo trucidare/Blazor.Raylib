@@ -54,7 +54,8 @@ public partial class ThreeDPicking : ComponentBase
         {
             if (!collision.Hit)
             {
-                ray = RaylibExtensions.GetScreenToWorldRay(GetMousePosition(), camera);
+                // in 5.5 RaylibExtensions.GetScreenToWorldRay
+                ray = GetMouseRay(GetMousePosition(), camera);
 
                 // Check collision between ray and box
                 collision = GetRayCollisionBox(ray,
