@@ -1,19 +1,19 @@
 {
   "mainAssemblyName": "Blazor.Raylib.Simple",
   "resources": {
-    "hash": "sha256-1zSAj91djZBZMMzrctZTBMD9I/+optm7vi9BB7tiuvU=",
+    "hash": "sha256-FUfjurRAZ9/TQYawxch/UuR9XByg3BFxykXYO7H1tBA=",
     "jsModuleNative": {
-      "dotnet.native.9.0.0-preview.6.24327.7.fis1cd6aaw.js": "sha256-q88Yto/ZXWYa3xdKWooo1rxPy2iyIb1qypS0/3OgIbk="
+      "dotnet.native.9.0.0-preview.6.24327.7.fis1cd6aaw.js": "sha256-vSSpgb6z15FrMl7D1MeqUuqI+Lm4s5s3pz5p67S9RWQ="
     },
     "jsModuleRuntime": {
       "dotnet.runtime.9.0.0-preview.6.24327.7.9cylphn603.js": "sha256-1sGN4mBlOIygvzzORYgLuA08gvyMY5jyK6tIludkQY4="
     },
     "wasmNative": {
-      "dotnet.native.wasm": "sha256-ieGGN9ZbaBjqGkCz5ZRTVDJFo/J9tdZ0NEXqyLvTPo8="
+      "dotnet.native.wasm": "sha256-T+ayG2ECPxxFE3ZCgMGQm5YNNWOGboZ3801UC1SiSAI="
     },
     "coreAssembly": {
-      "Blazor.Raylib.Simple.wasm": "sha256-Dc3EKSg6NeuzHrZUFYf2K7KSWa0P52JRRBVlhco/ciA=",
-      "Blazor.Raylib.wasm": "sha256-DuvnD71TtatcOSifa+VcAaH2+iosztiG07aePcq/uv8=",
+      "Blazor.Raylib.Simple.wasm": "sha256-AP1ZX+ymqewGX9Kn5Ry4y8cyWogwK+KncK9sYuqNwlQ=",
+      "Blazor.Raylib.wasm": "sha256-549QvLO5z7Uhon3ewJBpEv6vr3Q9sv9/+EmjV0zQ37c=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-NXWQO8PH/gmY0dGYb3V7nDc0Op9j3+KLt7dsBRB34RM=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-p2XyY7KV/j6UoFLZPqRmm8ICcgDYWrP7j44ieRH/A5A=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-VTwiLV8mfD78w1Klo477NiVHHjnuIqfeHQKTw1CObfU=",
