@@ -69,5 +69,6 @@
 .text-xl{font-size:1.25rem;line-height:1.75rem;}
 .text-\[oklch\(var\(--bc\)\]{--un-text-opacity:1;color:oklch(var(--bc / var(--un-text-opacity)) /* oklch(var(--bc) */;}
 .font-semibold{font-weight:600;}
+.line-through{text-decoration-line:line-through;}
 .underline{text-decoration-line:underline;}
 .hover\:shadow:hover{--un-shadow:var(--un-shadow-inset) 0 1px 3px 0 var(--un-shadow-color, rgb(0 0 0 / 0.1)),var(--un-shadow-inset) 0 1px 2px -1px var(--un-shadow-color, rgb(0 0 0 / 0.1));box-shadow:var(--un-ring-offset-shadow), var(--un-ring-shadow), var(--un-shadow);}
