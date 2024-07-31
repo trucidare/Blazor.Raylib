@@ -19,11 +19,14 @@ public partial class Interaction : ComponentBase
     private Model _model;
     private Texture2D _texture;
     private Camera3D _camera;
+    private Shader _shader;
+    private RenderTexture2D _target;
     
     private async void Init()
     {
         const int screenWidth = 1280;
         const int screenHeight = 768;
+        const int GLSL_VERSION = 100;
         
         InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
         _color = Color.White;
@@ -32,33 +35,48 @@ public partial class Interaction : ComponentBase
 
         await ResourceService.PreloadResource("resources/models/obj/turret.obj");
         await ResourceService.PreloadResource("resources/models/obj/turret_diffuse.png");
-
-        _camera.Position = new Vector3 ( 10.0f, 10.0f, 10.0f ); // Camera position
-        _camera.Target = new Vector3( 0.0f, 2.0f, 0.0f );      // Camera looking at point
-        _camera.Up = new Vector3 ( 0.0f, 1.0f, 0.0f );          // Camera up vector (rotation towards target)
-        _camera.FovY = 45.0f;                                // Camera field-of-view Y
-        _camera.Projection = CameraProjection.Perspective;             // Camera projection type
+        await ResourceService.PreloadResource($"resources/shaders/glsl{GLSL_VERSION}/grayscale.fs");
+        
+        _camera.Position = new Vector3 ( 10.0f, 10.0f, 10.0f ); 
+        _camera.Target = new Vector3( 0.0f, 2.0f, 0.0f );      
+        _camera.Up = new Vector3 ( 0.0f, 1.0f, 0.0f );         
+        _camera.FovY = 45.0f;                                
+        _camera.Projection = CameraProjection.Perspective;           
         
         _model = LoadModel("resources/models/obj/turret.obj");
         _texture = LoadTexture("resources/models/obj/turret_diffuse.png");
 
-        unsafe
-        {
-            _model.Materials[0].Maps[(int)MaterialMapIndex.Diffuse].Texture = _texture;
-        }
+        unsafe { _model.Materials[0].Maps[(int)MaterialMapIndex.Diffuse].Texture = _texture; }
+        
+        _shader = LoadShader(null!, $"resources/shaders/glsl{GLSL_VERSION}/grayscale.fs");
+        _target = LoadRenderTexture(screenWidth, screenHeight);
+
     }
     
     // Main game loop
     private async Task Render(float delta)
     {
-        BeginDrawing();
+        UpdateCamera(ref _camera, CameraMode.Orbital);
+        
+        BeginTextureMode(_target);
             ClearBackground(_color);
             
             BeginMode3D(_camera);
-                DrawModel(_model, Vector3.Zero, .3f, Color.White);            
+                DrawModel(_model, Vector3.Zero, .3f, Color.White);   
+                DrawGrid(10, 1.0f);          
             EndMode3D();
+        EndTextureMode();
+
+        BeginDrawing();
+            ClearBackground(Color.White);
+            BeginShaderMode(_shader);
+                DrawTextureRec(_target.Texture,
+                    new Rectangle(0, 0, _target.Texture.Width, -_target.Texture.Height),
+                    new Vector2(0, 0),
+                    Color.White);
+            EndShaderMode();
         EndDrawing();
-        
+
         _position = GetMousePosition();
         _fps = GetFPS();
         await Task.CompletedTask;

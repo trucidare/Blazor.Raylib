@@ -6,7 +6,7 @@
             <div class=" b-1 b-solid b-gray-400 rounded px-2 py-1 hover:bg-white/5 cursor-pointer text-sm" @onclick="ChangeColor">Change Color</div>
         </div>
         <div class="flex items-center">
-            <span>@_position.X | @_position.Y</span>
+            <span>@($"Mouse: {_position.X:N0} | {_position.Y:N0}")</span>
         </div>
     </div>
     <div class="flex items-center justify-center">

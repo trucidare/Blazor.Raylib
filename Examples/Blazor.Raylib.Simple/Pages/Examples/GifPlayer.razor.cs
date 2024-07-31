@@ -33,9 +33,13 @@ public partial class GifPlayer : ComponentBase
     {
         InitWindow(screenWidth, screenHeight, "raylib [textures] example - gif playing");
 
-        imScarfyAnim = await ResourceService.LoadResourceFromUri<Image>("resources/scarfy_run.gif", (e) => RaylibExtensions.LoadImageAnimFromMemory("resources/scarfy_run.gif", e, out animFrames));
+        RaylibExtensions.SetLoadFileTextCallback(ResourceService.GetLoadedResource);
+        RaylibExtensions.SetLoadFileDataCallback(ResourceService.GetLoadedResource);
+
+        await ResourceService.PreloadResource("resources/scarfy_run.gif");
+        imScarfyAnim = LoadImageAnim("resources/scarfy_run.gif", out var nms);
+        //texScarfyAnim = LoadTextureFromImage(imScarfyAnim);
         
-        texScarfyAnim = LoadTextureFromImage(imScarfyAnim);
     }
     
     // Main game loop
