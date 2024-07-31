@@ -29,8 +29,11 @@ public partial class Interaction : ComponentBase
         const int screenWidth = 1280;
         const int screenHeight = 768;
         const int GLSL_VERSION = 100;
-        InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
-        InitAudioDevice();                  
+        
+        SetConfigFlags(ConfigFlags.Msaa4xHint);
+        InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window"); 
+        InitAudioDevice();      
+       
         _color = Color.White;
         RaylibExtensions.SetLoadFileTextCallback(ResourceService.GetLoadedResource);
         RaylibExtensions.SetLoadFileDataCallback(ResourceService.GetLoadedResource);

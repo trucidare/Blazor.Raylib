@@ -30,7 +30,8 @@ public partial class RaylibLogo : ComponentBase
     }
     // Main game loop
     private async Task Render(float delta)
-    { // Update
+    { 
+        // Update
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------

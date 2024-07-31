@@ -1,3 +1,4 @@
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
@@ -16,6 +17,9 @@ public static unsafe partial class RaylibExtensions
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     private static extern Image LoadImageAnimFromMemory(sbyte* fileName, byte* fileData, int dataSize, int* frames);
     
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
+    public static extern Ray GetScreenToWorldRay(Vector2 mousePosition, Camera3D camera);
+
     public static void SetLoadFileDataCallback(LoadTextFileCallback callback)
     {
         if (LoadFileBag.Callback == null!)

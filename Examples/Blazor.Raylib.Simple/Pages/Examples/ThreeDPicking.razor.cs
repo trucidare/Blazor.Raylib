@@ -1,4 +1,5 @@
 using System.Numerics;
+using Blazor.Raylib.Extensions;
 using Microsoft.AspNetCore.Components;
 using Raylib_cs;
 using static Raylib_cs.Raylib;
@@ -53,7 +54,7 @@ public partial class ThreeDPicking : ComponentBase
         {
             if (!collision.Hit)
             {
-                ray = GetMouseRay(GetMousePosition(), camera);
+                ray = RaylibExtensions.GetScreenToWorldRay(GetMousePosition(), camera);
 
                 // Check collision between ray and box
                 collision = GetRayCollisionBox(ray,
