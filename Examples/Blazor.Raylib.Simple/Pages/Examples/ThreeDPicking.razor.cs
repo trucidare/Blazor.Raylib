@@ -37,13 +37,16 @@ public partial class ThreeDPicking : ComponentBase
     {
          // Update
         //----------------------------------------------------------------------------------
-        if (IsCursorHidden()) UpdateCamera(ref camera, CameraMode.FirstPerson);
+        if (IsCursorHidden()) 
+            UpdateCamera(ref camera, CameraMode.FirstPerson);
 
         // Toggle camera controls
         if (IsMouseButtonPressed(MouseButton.Right))
         {
-            if (IsCursorHidden()) EnableCursor();
-            else DisableCursor();
+            if (IsCursorHidden()) 
+                EnableCursor();
+            else 
+                DisableCursor();
         }
 
         if (IsMouseButtonPressed(MouseButton.Left))
@@ -64,9 +67,7 @@ public partial class ThreeDPicking : ComponentBase
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
-
             ClearBackground(Color.White);
-
             BeginMode3D(camera);
 
                 if (collision.Hit)
@@ -84,17 +85,15 @@ public partial class ThreeDPicking : ComponentBase
 
                 DrawRay(ray, Color.Maroon);
                 DrawGrid(10, 1.0f);
-
             EndMode3D();
-
+            
             DrawText("Try clicking on the box with your mouse!", 240, 10, 20, Color.DarkGray);
 
-            if (collision.Hit) DrawText("BOX SELECTED", (screenWidth - MeasureText("BOX SELECTED", 30)) / 2, (int)(screenHeight * 0.1f), 30, Color.Green);
+            if (collision.Hit) 
+                DrawText("BOX SELECTED", (screenWidth - MeasureText("BOX SELECTED", 30)) / 2, (int)(screenHeight * 0.1f), 30, Color.Green);
 
             DrawText("Right click mouse to toggle camera controls", 10, 430, 10, Color.Gray);
-
             DrawFPS(10, 10);
-
         EndDrawing();
         
         await Task.CompletedTask;

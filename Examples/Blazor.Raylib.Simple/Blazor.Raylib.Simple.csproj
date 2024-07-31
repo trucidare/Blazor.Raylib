@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\resources\models\obj\" />
     <Folder Include="_StaticAssets\" />
   </ItemGroup>
 
