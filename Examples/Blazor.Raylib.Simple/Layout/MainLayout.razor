@@ -78,8 +78,9 @@
                         <NavLink @onclick="@(() => NavigateTo("./examples/logo-raylib-anim", true))" class="flex gap-2 items-center rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7" Match="NavLinkMatch.All" ActiveClass="b-0 b-solid b-l-4 b-gray-400">
                             <div class="w-4 h-4">@(Fluent.Sample)</div>Logo Raylib Animation
                         </NavLink>
-                        <NavLink @onclick="@(() => NavigateTo("./examples/gif-player", true))" class="flex gap-2 items-center rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7" Match="NavLinkMatch.All" ActiveClass="b-0 b-solid b-l-4 b-gray-400">
-                            <div class="w-4 h-4">@(Fluent.Sample)</div>Gif Player (broken)
+                        @*@onclick="@(() => NavigateTo("./examples/gif-player", true))"*@
+                        <NavLink  class="flex gap-2 items-center rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7" Match="NavLinkMatch.All" ActiveClass="b-0 b-solid b-l-4 b-gray-400">
+                            <div class="w-4 h-4">@(Fluent.Sample)</div><span style="text-decoration: line-through">Gif Player (broken)</span>
                         </NavLink>
                         <NavLink @onclick="@(() => NavigateTo("./examples/raylib-logo", true))" class="flex gap-2 items-center rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7" Match="NavLinkMatch.All" ActiveClass="b-0 b-solid b-l-4 b-gray-400">
                             <div class="w-4 h-4">@(Fluent.Sample)</div>Raylib Logo
