@@ -7,6 +7,7 @@ using Raylib_cs;
 namespace Blazor.Raylib.Extensions;
 
 public delegate byte[] LoadTextFileCallback(string resource);
+public delegate void RenderCallback(float delta);
 
 [SuppressUnmanagedCodeSecurity]
 public static unsafe partial class RaylibExtensions
@@ -19,6 +20,11 @@ public static unsafe partial class RaylibExtensions
     
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl)]
     public static extern Ray GetScreenToWorldRay(Vector2 mousePosition, Camera3D camera);
+    
+    
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "emscripten_set_main_loop")]
+    private static extern void SetMainLoop(delegate* unmanaged[Cdecl]<float, void> callback, int fps, int infiniteLoop);
+
 
     public static void SetLoadFileDataCallback(LoadTextFileCallback callback)
     {
@@ -59,6 +65,12 @@ public static unsafe partial class RaylibExtensions
             return image;
         }
     }
+
+    public static void SetMainLoop(RenderCallback callback)
+    {
+        MainLoopHelper.Callback = callback;
+        SetMainLoop(&MainLoopHelper.Renders, 0,0);
+    }
 }
 
 internal static unsafe class LoadFileBag
@@ -98,5 +110,17 @@ internal static unsafe class LoadFileBag
         }
 
         return null;
+    }
+}
+
+internal static unsafe class MainLoopHelper
+{
+
+    public static RenderCallback Callback = null!;
+
+    [UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+    public static async void Renders(float delta)
+    {
+        Callback?.Invoke(delta);
     }
 }

@@ -32,13 +32,13 @@
             <div class="text-3xl w-6 h-6 flex items-center cursor-pointer" @onclick="@(() => NavigateTo("https://github.com/trucidare"))">@(Logos.Github)</div>
         </div>
     </div>
-    <div class="grow flex">
+    <div class="grow flex overflow-hidden">
         <nav class="min-w-72 b-0 b-r-1 b-solid b-gray-400 h-full">
             <div class="h-10 b-0 b-solid b-b-1 b-gray-400 flex items-center justify-center">
                 <span class="text-sm">Navigation</span>
             </div>
             
-            <div class="px-4 py-6 flex flex-col gap-2">
+            <div class="px-4 py-6 flex flex-col gap-2 overflow-y-auto h-[calc(100%-5rem)]">
                 <div>
                     <NavLink href="./" class="flex gap-2 items-center bg-white/5 rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7">
                         <div class="w-5 h-5">@(MaterialDesignIcons.ContainStart)</div>Getting Started
@@ -98,6 +98,9 @@
                     <div class="px-6 !text-sm pt-4 flex flex-col gap-2">
                         <NavLink @onclick="@(() => NavigateTo("./playground/interaction", true))" class="flex gap-2 items-center rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7" Match="NavLinkMatch.All" ActiveClass="b-0 b-solid b-l-4 b-gray-400">
                             <div class="w-4 h-4">@(Fluent.New16)</div>Interactive
+                        </NavLink>
+                        <NavLink @onclick="@(() => NavigateTo("./playground/resize", true))" class="flex gap-2 items-center rounded px-4 py-2 cursor-pointer hover:shadow hover:bg-white/7" Match="NavLinkMatch.All" ActiveClass="b-0 b-solid b-l-4 b-gray-400">
+                            <div class="w-4 h-4">@(Fluent.New16)</div>Resize
                         </NavLink>
                     </div>
                 </div>

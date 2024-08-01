@@ -2,7 +2,7 @@ namespace Blazor.Raylib.Simple.Services;
 
 public sealed class ResourceService(HttpClient http)
 {
-    private Dictionary<string, byte[]> _loadedResources = [];
+    private readonly Dictionary<string, byte[]> _loadedResources = [];
     
     public async Task<byte[]> GetResource(string resourceName)
     {
@@ -16,8 +16,16 @@ public sealed class ResourceService(HttpClient http)
     }
 
     public byte[] GetLoadedResource(string filePath)
-        => _loadedResources[filePath];
+        => CheckAndGetResource(filePath);
     
     public byte[] GetLoadedResource(string filePath, int _)
-        => _loadedResources[filePath];
+        => CheckAndGetResource(filePath);
+
+    private byte[] CheckAndGetResource(string resourceName)
+    {
+        if (_loadedResources.TryGetValue(resourceName, out var resource))
+            return resource;
+
+        return [];
+    }
 }

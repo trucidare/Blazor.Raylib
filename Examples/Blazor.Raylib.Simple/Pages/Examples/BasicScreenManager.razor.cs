@@ -27,7 +27,7 @@ public partial class BasicScreenManager : ComponentBase
     }
     
     // Main game loop
-    private async Task Render(float delta)
+    private async void Render(float delta)
     {
 
                 // Update

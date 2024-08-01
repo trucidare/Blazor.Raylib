@@ -18,7 +18,7 @@
         <When Condition=" $(Configuration) == 'Debug' ">
             <PropertyGroup>
                 <WasmEmitSymbolMap>true</WasmEmitSymbolMap>
-                <EmccFlags>-s USE_GLFW=3 -Wbad-function-cast -Wcast-function-type </EmccFlags>
+                <EmccFlags>-s USE_GLFW=3 -Wbad-function-cast -Wcast-function-type -DFLAG_RESIZABLE_WINDOW -s FORCE_FILESYSTEM=1</EmccFlags>
             </PropertyGroup>
         </When>
         <When Condition=" $(Configuration) == 'Release' ">
