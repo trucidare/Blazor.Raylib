@@ -42,7 +42,7 @@ public partial class Interaction : ComponentBase
 
         await ResourceService.PreloadResource("resources/models/obj/turret.obj");
         await ResourceService.PreloadResource("resources/models/obj/turret_diffuse.png");
-        await ResourceService.PreloadResource($"resources/shaders/glsl100/posterization.fs");
+        await ResourceService.PreloadResource($"resources/shaders/glsl100/sobel.fs");
         await ResourceService.PreloadResource("resources/audio/mini1111.xm");
         await ResourceService.PreloadResource("resources/shaders/glsl100/lighting.fs");
         await ResourceService.PreloadResource("resources/shaders/glsl100/lighting.vs");
@@ -58,7 +58,7 @@ public partial class Interaction : ComponentBase
 
         unsafe { _model.Materials[0].Maps[(int)MaterialMapIndex.Diffuse].Texture = _texture; }
         
-        _shader = LoadShader(null!, $"resources/shaders/glsl100/posterization.fs");
+        _shader = LoadShader(null!, $"resources/shaders/glsl100/sobel.fs");
         _target = LoadRenderTexture(screenWidth, screenHeight);
         
         _lightShader = LoadShader("resources/shaders/glsl100/lighting.vs", "resources/shaders/glsl100/lighting.fs");
