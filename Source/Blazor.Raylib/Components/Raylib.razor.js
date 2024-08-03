@@ -27,18 +27,23 @@ class Raylib {
         exports.Blazor.Raylib.Components.Raylib.ResizeCanvas(dotnetObject, width, height, dpr);
     }
     
-    render(dotnetObject, id) {
+    render(dotnetObject, id, fps) {
         if (dotnetObject) {
+            const frameCap = 1000.0 / (fps + 16.0);
             let lastTime = performance.now();
             const localRender = async (time) => {
                 const { getAssemblyExports } = await globalThis.getDotnetRuntime(0);
                 var exports = await getAssemblyExports("Blazor.Raylib.dll");
-                let delta = time - lastTime;
-                if (!delta)
-                    delta = 0;
-                exports.Blazor.Raylib.Components.Raylib.EventAnimationFrame(dotnetObject, delta);
-                lastTime = time;
-                requestAnimationFrame(localRender);
+                
+                const now = performance.now();
+                let delta = now - lastTime;
+                
+               if (delta > frameCap) {
+                   exports.Blazor.Raylib.Components.Raylib.EventAnimationFrame(dotnetObject, delta);
+                   lastTime = now;
+               }
+                
+               requestAnimationFrame(localRender);
             };
             localRender(0);
         }

@@ -23,6 +23,9 @@ public partial class Raylib
     
     [Parameter]
     public bool UseEmscriptenMainLoop { get; set; }
+
+    [Parameter] 
+    public int MaxFPS { get; set; }
     
     [Parameter(CaptureUnmatchedValues = true)]
     public IDictionary<string, object>? Attributes { get; set; }
@@ -44,11 +47,12 @@ public partial class Raylib
 
     private void ManageRenderLoop()
     {
+        var maxFps = MaxFPS == 0 ? 1000 : MaxFPS;
         if (OnRender != null)
             if (!UseEmscriptenMainLoop)
-                Render(this, _id);
+                Render(this, _id, maxFps);
             else
-                RaylibExtensions.SetMainLoop(OnRender);
+                RaylibExtensions.SetMainLoop(OnRender, MaxFPS);
     }
 
     #region Interop
@@ -58,7 +62,7 @@ public partial class Raylib
 
 
     [JSImport("raylib.render", "Raylib")]
-    public static partial void Render([JSMarshalAs<JSType.Any>] object reference, string id);
+    public static partial void Render([JSMarshalAs<JSType.Any>] object reference, string id, int fps);
 
 
     [JSExport]

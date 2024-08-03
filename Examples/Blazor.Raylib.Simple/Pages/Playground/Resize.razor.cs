@@ -63,7 +63,7 @@ public partial class Resize : ComponentBase
             
             BeginMode3D(_camera);
                 DrawGrid(100,1);
-                DrawModel(_model, Vector3.UnitZ, 0.5f, Color.White);
+                DrawModel(_model, Vector3.Zero, 0.5f, Color.White);
             EndMode3D();
         EndDrawing();
     }
@@ -73,3 +73,8 @@ public partial class Resize : ComponentBase
         SetWindowSize(Size.width, Size.height);
     }
 }
+
+// https://github.com/raysan5/raylib/blob/master/examples/models/models_mesh_picking.c
+// https://github.com/raysan5/physac
+// https://github.com/raysan5/raylib/blob/master/examples/models/rlights.h
+// https://github.com/raysan5/raygui
