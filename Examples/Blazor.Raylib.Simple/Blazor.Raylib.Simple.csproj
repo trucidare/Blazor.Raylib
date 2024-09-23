@@ -24,11 +24,6 @@
     <Content Include="$(SolutionDir)\Blazor.Raylib.Simple\Resources\**\*.*" TargetPath="resources\%(RecursiveDir)\%(Filename)%(Extension)" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\resources\models\obj\" />
-    <Folder Include="_StaticAssets\" />
-  </ItemGroup>
-
 
   <!--<ItemGroup>
      <PackageReference Include="Blazor.Raylib" IncludeAssets="all" Version="1.0.0" />

@@ -40,8 +40,8 @@ public partial class Interaction : ComponentBase
         RaylibExtensions.SetLoadFileTextCallback(ResourceService.GetLoadedResource);
         RaylibExtensions.SetLoadFileDataCallback(ResourceService.GetLoadedResource);
 
-        await ResourceService.PreloadResource("resources/models/obj/turret.obj");
-        await ResourceService.PreloadResource("resources/models/obj/turret_diffuse.png");
+        await ResourceService.PreloadResource("resources/models/objs/turret.obj");
+        await ResourceService.PreloadResource("resources/models/objs/turret_diffuse.png");
         await ResourceService.PreloadResource($"resources/shaders/glsl100/sobel.fs");
         await ResourceService.PreloadResource("resources/audio/mini1111.xm");
         await ResourceService.PreloadResource("resources/shaders/glsl100/lighting.fs");
@@ -53,8 +53,8 @@ public partial class Interaction : ComponentBase
         _camera.FovY = 45.0f;                                
         _camera.Projection = CameraProjection.Perspective;           
         
-        _model = LoadModel("resources/models/obj/turret.obj");
-        _texture = LoadTexture("resources/models/obj/turret_diffuse.png");
+        _model = LoadModel("resources/models/objs/turret.obj");
+        _texture = LoadTexture("resources/models/objs/turret_diffuse.png");
 
         unsafe { _model.Materials[0].Maps[(int)MaterialMapIndex.Diffuse].Texture = _texture; }
         
