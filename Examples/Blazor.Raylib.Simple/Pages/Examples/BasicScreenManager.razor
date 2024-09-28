@@ -1,9 +1,5 @@
 @page "/examples/basic-screen-manager"
 
-<div class="pt-10 px-10">
-    <div class="flex items-center justify-center">
-        <Window Class="w-2/3" Title="Basic Scene Manager">
-            <Raylib OnInit="Init" OnRender="Render"></Raylib>
-        </Window>
-    </div>
+<div class="w-full h-full">
+    <Raylib OnInit="Init" OnResize="OnResize" OnRender="Render"></Raylib>
 </div>

@@ -8,7 +8,7 @@ using Color = Raylib_cs.Color;
 
 namespace Blazor.Raylib.Simple.Pages.Examples;
 
-public partial class Meshloading : ComponentBase
+public partial class Meshloading : IDisposable
 {
     [Inject]
     public required ResourceService ResourceService { get; set; }
@@ -34,6 +34,7 @@ public partial class Meshloading : ComponentBase
         _camera.Projection = CameraProjection.Perspective;
 
         _model = LoadModel("resources/models/gltf/raylib_32x32.glb");
+        OnResize((screenWidth, screenHeight));
 
     }
     
@@ -52,5 +53,15 @@ public partial class Meshloading : ComponentBase
         EndDrawing();
 
         await Task.CompletedTask;
+    }
+    
+    private void OnResize((int width, int height) Size)
+    {
+        SetWindowSize(Size.width, Size.height);
+    }
+    
+    public void Dispose()
+    {
+        CloseWindow();
     }
 }

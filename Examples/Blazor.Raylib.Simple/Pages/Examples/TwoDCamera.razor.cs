@@ -6,7 +6,7 @@ using Color = Raylib_cs.Color;
 
 namespace Blazor.Raylib.Simple.Pages.Examples;
 
-public partial class TwoDCamera : ComponentBase
+public partial class TwoDCamera : IDisposable
 {
     const int screenWidth = 800;
     const int screenHeight = 450;
@@ -41,6 +41,7 @@ public partial class TwoDCamera : ComponentBase
         camera.Rotation = 0.0f;
         camera.Zoom = 1.0f;
 
+        OnResize((screenWidth, screenHeight));
     }
     
     // Main game loop
@@ -116,5 +117,14 @@ public partial class TwoDCamera : ComponentBase
 
         await Task.CompletedTask;
     }
-
+    
+    private void OnResize((int width, int height) Size)
+    {
+        SetWindowSize(Size.width, Size.height);
+    }
+    
+    public void Dispose()
+    {
+        CloseWindow();
+    }
 }

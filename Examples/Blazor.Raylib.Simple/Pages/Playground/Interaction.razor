@@ -1,7 +1,7 @@
 @page "/playground/interaction"
 
-<div class="pt-10 px-10">
-    <div class="flex items-center justify-between pb-10">
+<div class="absolute top-20 right-20">
+    <div class="right-0 top-10 flex items-center justify-between gap-10 pb-10">
         <div class="flex items-center">
             <div class=" b-1 b-solid b-gray-400 rounded px-2 py-1 hover:bg-white/5 cursor-pointer text-sm" @onclick="ChangeColor">Change Color</div>
         </div>
@@ -9,9 +9,8 @@
             <span>@($"Mouse: {_position.X:N0} | {_position.Y:N0}")</span>
         </div>
     </div>
-    <div class="flex items-center justify-center">
-        <Window Class="w-2/3" Title="@($"FPS: {_fps}")">
-            <Raylib OnInit="Init" OnRender="Render" MaxFPS="60"></Raylib>
-        </Window>
-    </div>
+</div>
+
+<div class="w-full h-full">
+    <Raylib OnInit="Init" OnResize="OnResize" OnRender="Render" MaxFPS="60"></Raylib>
 </div>

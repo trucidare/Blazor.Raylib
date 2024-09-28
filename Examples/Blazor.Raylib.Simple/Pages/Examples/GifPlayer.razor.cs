@@ -8,7 +8,7 @@ using Color = Raylib_cs.Color;
 
 namespace Blazor.Raylib.Simple.Pages.Examples;
 
-public partial class GifPlayer : ComponentBase
+public partial class GifPlayer : IDisposable
 {
     [Inject]
     public required ResourceService ResourceService { get; set; } 
@@ -39,7 +39,8 @@ public partial class GifPlayer : ComponentBase
         await ResourceService.PreloadResource("resources/scarfy_run.gif");
         imScarfyAnim = LoadImageAnim("resources/scarfy_run.gif", out var nms);
         //texScarfyAnim = LoadTextureFromImage(imScarfyAnim);
-        
+        OnResize((screenWidth, screenHeight));
+
     }
     
     // Main game loop
@@ -102,5 +103,15 @@ public partial class GifPlayer : ComponentBase
 
         EndDrawing();
         await Task.CompletedTask;
+    }
+    
+    private void OnResize((int width, int height) Size)
+    {
+        SetWindowSize(Size.width, Size.height);
+    }
+    
+    public void Dispose()
+    {
+        CloseWindow();
     }
 }

@@ -8,7 +8,7 @@ using Color = Raylib_cs.Color;
 
 namespace Blazor.Raylib.Simple.Pages.Playground;
 
-public partial class Resize : ComponentBase
+public partial class Resize : IDisposable
 {
     [Inject]
     public required ResourceService ResourceService { get; set; }
@@ -71,6 +71,11 @@ public partial class Resize : ComponentBase
     private void OnResize((int width, int height) Size)
     {
         SetWindowSize(Size.width, Size.height);
+    }
+
+    public void Dispose()
+    {
+        CloseWindow();
     }
 }
 

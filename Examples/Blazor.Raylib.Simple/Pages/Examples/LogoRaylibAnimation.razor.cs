@@ -6,7 +6,7 @@ using Color = Raylib_cs.Color;
 
 namespace Blazor.Raylib.Simple.Pages.Examples;
 
-public partial class LogoRaylibAnimation : ComponentBase
+public partial class LogoRaylibAnimation : IDisposable
 {
     
     const int screenWidth = 800;
@@ -30,6 +30,7 @@ public partial class LogoRaylibAnimation : ComponentBase
     private void Init()
     {
         InitWindow(screenWidth, screenHeight, "raylib [shapes] example - raylib logo animation");
+        OnResize((screenWidth, screenHeight));
     }
 
     // Main game loop
@@ -144,5 +145,15 @@ public partial class LogoRaylibAnimation : ComponentBase
 
         EndDrawing();
         await Task.CompletedTask;
+    }
+    
+    private void OnResize((int width, int height) Size)
+    {
+        SetWindowSize(Size.width, Size.height);
+    }
+    
+    public void Dispose()
+    {
+        CloseWindow();
     }
 }

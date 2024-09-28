@@ -7,7 +7,7 @@ using Color = Raylib_cs.Color;
 
 namespace Blazor.Raylib.Simple.Pages.Examples;
 
-public partial class ThreeDPicking : ComponentBase
+public partial class ThreeDPicking : IDisposable
 {
     const int screenWidth = 800;
     const int screenHeight = 450;
@@ -27,10 +27,8 @@ public partial class ThreeDPicking : ComponentBase
         camera.Up = new Vector3 ( 0.0f, 1.0f, 0.0f );          // Camera up vector (rotation towards target)
         camera.FovY = 45.0f;                                // Camera field-of-view Y
         camera.Projection = CameraProjection.Perspective;             // Camera projection type
-
-   
-
-      
+        
+        OnResize((screenWidth, screenHeight));
     }
     
     // Main game loop
@@ -99,5 +97,15 @@ public partial class ThreeDPicking : ComponentBase
         EndDrawing();
         
         await Task.CompletedTask;
+    }
+    
+    private void OnResize((int width, int height) Size)
+    {
+        SetWindowSize(Size.width, Size.height);
+    }
+    
+    public void Dispose()
+    {
+        CloseWindow();
     }
 }

@@ -6,7 +6,7 @@ using Raylib_cs;
 
 namespace Blazor.Raylib.Simple.Pages.Examples;
 
-public partial class ThreeDFirstPerson : ComponentBase
+public partial class ThreeDFirstPerson : IDisposable
 {
     private const int MaxColumns = 20;
     private const int ScreenWidth = 800;
@@ -39,6 +39,7 @@ public partial class ThreeDFirstPerson : ComponentBase
         }
 
         DisableCursor();    
+        OnResize((ScreenWidth, ScreenHeight));
     }
     
     // Main game loop
@@ -157,5 +158,15 @@ public partial class ThreeDFirstPerson : ComponentBase
 
         EndDrawing();
         await Task.CompletedTask;
+    }
+    
+    private void OnResize((int width, int height) Size)
+    {
+        SetWindowSize(Size.width, Size.height);
+    }
+    
+    public void Dispose()
+    {
+        CloseWindow();
     }
 }

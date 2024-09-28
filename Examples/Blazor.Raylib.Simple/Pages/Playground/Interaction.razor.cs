@@ -9,7 +9,7 @@ using Color = Raylib_cs.Color;
 
 namespace Blazor.Raylib.Simple.Pages.Playground;
 
-public partial class Interaction : ComponentBase
+public partial class Interaction : IDisposable
 {
     [Inject]
     public required ResourceService ResourceService { get; set; }
@@ -36,7 +36,7 @@ public partial class Interaction : ComponentBase
         InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window"); 
         InitAudioDevice();      
        
-        _color = Color.White;
+        _color = Color.Black;
         RaylibExtensions.SetLoadFileTextCallback(ResourceService.GetLoadedResource);
         RaylibExtensions.SetLoadFileDataCallback(ResourceService.GetLoadedResource);
 
@@ -85,6 +85,7 @@ public partial class Interaction : ComponentBase
             RaylibExtensions.UpdateLightValues(_lightShader, light);
 
         _initialized = true;
+        OnResize((screenWidth, screenHeight));
     }
     
     // Main game loop
@@ -161,5 +162,17 @@ public partial class Interaction : ComponentBase
     private void ChangeColor()
     {
         _color = ColorFromHSV(Random.Shared.Next(), 1, 1);
+    }
+    
+    private void OnResize((int width, int height) Size)
+    {
+        SetWindowSize(Size.width, Size.height);
+        _target = LoadRenderTexture(Size.width, Size.height);
+
+    }
+    
+    public void Dispose()
+    {
+        CloseWindow();
     }
 }

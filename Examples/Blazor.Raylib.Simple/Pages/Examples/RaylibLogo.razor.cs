@@ -7,7 +7,7 @@ using Color = Raylib_cs.Color;
 
 namespace Blazor.Raylib.Simple.Pages.Examples;
 
-public partial class RaylibLogo : ComponentBase
+public partial class RaylibLogo : IDisposable
 { 
     [Inject]
     public required ResourceService ResourceService { get; set; }
@@ -26,6 +26,7 @@ public partial class RaylibLogo : ComponentBase
             var image = LoadImageFromMemory(".png",e);
             return LoadTextureFromImage(image);
         }); 
+        OnResize((screenWidth, screenHeight));
 
     }
     // Main game loop
@@ -49,5 +50,15 @@ public partial class RaylibLogo : ComponentBase
         EndDrawing();
 
         await Task.CompletedTask;
+    }
+    
+    private void OnResize((int width, int height) Size)
+    {
+        SetWindowSize(Size.width, Size.height);
+    }
+    
+    public void Dispose()
+    {
+        CloseWindow();
     }
 }

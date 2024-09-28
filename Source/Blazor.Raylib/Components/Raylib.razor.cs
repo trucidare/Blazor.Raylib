@@ -7,7 +7,7 @@ using Blazor.Raylib.Extensions;
 namespace Blazor.Raylib.Components;
 
 [SupportedOSPlatform("browser")]
-public partial class Raylib
+public partial class Raylib : IDisposable
 {
     [Inject]
     public required IJSRuntime Runtime { get; set; }
@@ -36,8 +36,8 @@ public partial class Raylib
     {
         await JSHost.ImportAsync("Raylib", "../_content/Blazor.Raylib/Components/Raylib.razor.js");
         Init(this, _id);
-        ManageRenderLoop();
         InitRaylib();
+        ManageRenderLoop();
     }
 
     private void InitRaylib()
@@ -84,4 +84,9 @@ public partial class Raylib
     }
     
     #endregion
+
+    public void Dispose()
+    {
+        OnRender = null;
+    }
 }

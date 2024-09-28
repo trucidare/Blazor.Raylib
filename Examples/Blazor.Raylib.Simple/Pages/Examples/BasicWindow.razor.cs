@@ -4,7 +4,7 @@ using Color = Raylib_cs.Color;
 
 namespace Blazor.Raylib.Simple.Pages.Examples;
 
-public partial class BasicWindow : ComponentBase
+public partial class BasicWindow : IDisposable
 {
     private void Init()
     {
@@ -12,6 +12,7 @@ public partial class BasicWindow : ComponentBase
         const int screenHeight = 450;
         
         InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+        OnResize((screenWidth, screenHeight));
     }
     
     // Main game loop
@@ -34,6 +35,16 @@ public partial class BasicWindow : ComponentBase
         EndDrawing();
 
         await Task.CompletedTask;
+    }
+    
+    private void OnResize((int width, int height) Size)
+    {
+        SetWindowSize(Size.width, Size.height);
+    }
+    
+    public void Dispose()
+    {
+        CloseWindow();
     }
 
 }

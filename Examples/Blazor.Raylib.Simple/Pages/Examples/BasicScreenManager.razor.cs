@@ -5,7 +5,7 @@ using Color = Raylib_cs.Color;
 
 namespace Blazor.Raylib.Simple.Pages.Examples;
 
-public partial class BasicScreenManager : ComponentBase
+public partial class BasicScreenManager : IDisposable
 {
     private enum GameScreen
     {
@@ -16,14 +16,16 @@ public partial class BasicScreenManager : ComponentBase
     };
 
     private GameScreen currentScreen;
-    private const int screenWidth = 800;
-    private const int screenHeight = 450;
+    private int screenWidth = 800;
+    private int screenHeight = 450;
     private int framesCounter = 0;  
     
     private void Init()
     {
         InitWindow(screenWidth, screenHeight, "raylib [core] example - basic screen manager");
         currentScreen = GameScreen.LOGO;
+        
+        OnResize((screenWidth, screenHeight));
     }
     
     // Main game loop
@@ -125,5 +127,17 @@ public partial class BasicScreenManager : ComponentBase
         EndDrawing();
 
         await Task.CompletedTask;
+    }
+    
+    private void OnResize((int width, int height) Size)
+    {
+        screenWidth = Size.width;
+        screenHeight = Size.height;
+        SetWindowSize(Size.width, Size.height);
+    }
+    
+    public void Dispose()
+    {
+        CloseWindow();
     }
 }
