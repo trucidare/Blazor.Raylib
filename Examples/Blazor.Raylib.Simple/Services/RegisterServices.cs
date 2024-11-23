@@ -4,6 +4,6 @@ public static class RegisterServices
 {
     public static void AddRaylibServices(this IServiceCollection services)
     {
-        services.AddSingleton<ResourceService>();
+        services.AddScoped<ResourceService>();
     }
 }
