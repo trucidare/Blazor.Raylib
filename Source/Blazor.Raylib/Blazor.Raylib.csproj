@@ -30,7 +30,7 @@
   
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.0-*" />
-    <PackageReference Include="Raylib-cs" Version="6.1.1" />
+    <PackageReference Include="Raylib-cs" Version="7.0.0" />
   </ItemGroup>
   
   <ItemGroup>
