@@ -4,6 +4,7 @@ class Raylib {
         const canvas = document.getElementById(id)
         if (canvas) {
             Blazor.runtime.Module['canvas'] = canvas;
+            canvas.addEventListener('contextmenu',(e) => e.preventDefault());
             
             if (dotnetObject) {
                 Blazor.runtime.Module['canvasInstance'] = dotnetObject;
