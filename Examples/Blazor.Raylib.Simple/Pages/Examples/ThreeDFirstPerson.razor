@@ -1,5 +1,5 @@
 @page "/examples/three-d-first-person"
 
-<div class="w-full h-full">
-    <Raylib OnInit="Init" OnResize="OnResize" OnRender="Render"></Raylib>
-</div>
+<Window Class="w-full h-full" Title="@($"FPS: {_fps}")">
+    <Raylib OnInit="Init" OnResize="OnResize" OnRender="Render""></Raylib>
+</Window>

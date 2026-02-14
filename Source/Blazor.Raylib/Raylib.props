@@ -17,13 +17,13 @@
     <Choose>
         <When Condition=" $(Configuration) == 'Debug' ">
             <PropertyGroup>
-                <WasmEmitSymbolMap>true</WasmEmitSymbolMap>
-                <EmccFlags>-s USE_GLFW=3 -Wbad-function-cast -Wcast-function-type -DFLAG_RESIZABLE_WINDOW -s FORCE_FILESYSTEM=1</EmccFlags>
+                <WasmEmitSymbolMap>false</WasmEmitSymbolMap>
+                <EmccFlags>-s USE_GLFW=3 -s ALLOW_MEMORY_GROWTH=1 -Wbad-function-cast -Wcast-function-type -DFLAG_RESIZABLE_WINDOW -s FORCE_FILESYSTEM=1 -s EXPORTED_RUNTIME_METHODS=ccall -s TOTAL_MEMORY=67108864 -DPLATFORM_WEB -s EXPORTED_RUNTIME_METHODS=ccall  </EmccFlags>
             </PropertyGroup>
         </When>
         <When Condition=" $(Configuration) == 'Release' ">
             <PropertyGroup>
-                <EmccFlags>-s USE_GLFW=3 </EmccFlags>
+                <EmccFlags>-s USE_GLFW=3 -O1</EmccFlags>
             </PropertyGroup>
         </When>
     </Choose>
